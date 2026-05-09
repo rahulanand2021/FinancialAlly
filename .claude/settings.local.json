@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(git checkout *)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "PowerShell(npm install *)",
+      "Bash(where codex *)",
+      "Bash(codex *)",
+      "Bash(npm install *)",
+      "Bash(cat .claude-plugin/plugin.json)",
+      "Bash(dir .claude-plugin /s)",
+      "Bash(cat .claude/settings.json)"
     ]
   }
 }

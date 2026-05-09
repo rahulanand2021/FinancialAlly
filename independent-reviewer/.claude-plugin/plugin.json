@@ -1,5 +1,5 @@
 {
     "name" : "independent-reviewer",
-    "description" : "Carry out an independent review of all changes since last commit",
-    "version" :  "1.0.0"
+    "description" : "Carry out an independent review of all changes since last commit. Write the output to a file named planning/review.md",
+    "version" :  "1.0.1"
 }

@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "powershell -ExecutionPolicy Bypass -File scripts/review.ps1",
+            "command": "C:\\Users\\rahul\\AppData\\Roaming\\npm\\codex.cmd exec review --uncommitted -m o4-mini",
             "timeout": 240
           }
         ]
