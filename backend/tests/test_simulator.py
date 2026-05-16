@@ -170,12 +170,16 @@ async def test_stop_without_start():
 async def test_prices_update_over_time():
     sim = SimulatedMarketData(seed=1)
     await sim.add_ticker("AAPL")
-    initial_price = sim.get_prices()["AAPL"].price
 
+    prices_seen: set[float] = set()
+
+    async def capture(u):
+        prices_seen.add(u.price)
+
+    sim.subscribe(capture)
     await sim.start()
-    await asyncio.sleep(2.0)
+    await asyncio.sleep(3.0)  # 6 ticks
     await sim.stop()
 
-    final_price = sim.get_prices()["AAPL"].price
-    # After 4 ticks, price should have moved (extremely unlikely to stay identical)
-    assert final_price != initial_price or True  # GBM can theoretically stay flat, so soft assert
+    # 6 GBM ticks should produce at least 2 distinct prices
+    assert len(prices_seen) >= 2
