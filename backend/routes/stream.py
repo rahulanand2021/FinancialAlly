@@ -46,7 +46,7 @@ async def stream_prices():
                     "direction": update.direction,
                 }
                 yield f"data: {json.dumps(payload)}\n\n"
-        except asyncio.CancelledError:
+        finally:
             provider.unsubscribe(on_price)
 
     return StreamingResponse(

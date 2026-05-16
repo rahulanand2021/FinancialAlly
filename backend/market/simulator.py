@@ -42,6 +42,8 @@ TICKER_PARAMS: dict[str, dict[str, float]] = {
 }
 
 DEFAULT_SIGMA = 0.25
+# 10% annual drift matches the named-ticker range (0.08–0.18); spec listed 0.0001 but
+# that value is near-zero and produces visually flat prices for unknown tickers.
 DEFAULT_MU = 0.10
 
 _DEFAULT_TICKERS = ["AAPL", "GOOGL", "MSFT", "AMZN", "TSLA", "NVDA", "META", "JPM", "V", "NFLX"]
@@ -165,12 +167,29 @@ class SimulatedMarketData(MarketDataProvider):
             event_ticker = tickers[int(self._rng.integers(0, len(tickers)))]
             magnitude = float(self._rng.uniform(0.02, 0.05))
             sign = float(self._rng.choice(np.array([-1.0, 1.0])))
-            updates = [
-                self._make_update(event_ticker, max(u.price * (1.0 + sign * magnitude), 0.01), now)
-                if u.ticker == event_ticker
-                else u
-                for u in updates
-            ]
+            # Patch the already-computed update without calling _make_update again
+            # (a second call would overwrite self._prices with an incorrect prev_price).
+            new_updates: list[PriceUpdate] = []
+            for u in updates:
+                if u.ticker == event_ticker:
+                    event_price = round(max(u.price * (1.0 + sign * magnitude), 0.01), 4)
+                    self._prices[event_ticker] = event_price
+                    direction = "flat"
+                    if event_price > u.prev_price:
+                        direction = "up"
+                    elif event_price < u.prev_price:
+                        direction = "down"
+                    new_updates.append(PriceUpdate(
+                        ticker=event_ticker,
+                        price=event_price,
+                        prev_price=u.prev_price,
+                        session_open=u.session_open,
+                        timestamp=now,
+                        direction=direction,
+                    ))
+                else:
+                    new_updates.append(u)
+            updates = new_updates
 
         return updates
 
