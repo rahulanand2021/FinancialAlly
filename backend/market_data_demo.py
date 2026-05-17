@@ -1,19 +1,9 @@
 #!/usr/bin/env python3
-# /// script
-# requires-python = ">=3.12"
-# dependencies = [
-#   "rich>=13.0.0",
-#   "numpy>=1.26.0",
-# ]
-# ///
 """
 FinAlly Market Data Demo — live terminal dashboard.
 
 Run from backend/:
     uv run python market_data_demo.py
-
-Run from project root (uv resolves deps via inline header):
-    uv run backend/market_data_demo.py
 
 Press Ctrl+C to exit.
 """
