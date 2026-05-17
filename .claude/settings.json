@@ -1,5 +1,5 @@
 {
   "enabledPlugins": {
-    "independent-reviewer@Rahul-tools": true
+    "playwright@claude-plugins-official": true
   }
 }
