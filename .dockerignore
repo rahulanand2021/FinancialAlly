@@ -1,0 +1,37 @@
+# Version control
+.git
+.gitignore
+.github
+
+# Python
+**/__pycache__
+**/*.pyc
+**/.pytest_cache
+**/.venv
+**/.mypy_cache
+**/.ruff_cache
+
+# Node
+**/node_modules
+**/.next
+frontend/out
+
+# Local DB and env
+db/finally.db
+.env
+.env.*
+!.env.example
+
+# Editor / IDE / OS
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Project meta
+README.md
+planning
+test
+scripts
+.claude
+.claude-plugin
