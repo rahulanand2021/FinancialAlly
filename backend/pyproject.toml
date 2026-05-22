@@ -30,4 +30,4 @@ asyncio_mode = "auto"
 testpaths = ["tests"]
 
 [tool.hatch.build.targets.wheel]
-packages = ["market", "routes", "tasks"]
+packages = ["market", "routes", "tasks", "services", "db"]

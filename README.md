@@ -46,3 +46,7 @@ Single Docker container on port 8000:
 ## Tech Stack
 
 Python · FastAPI · SQLite · Next.js · TypeScript · Tailwind CSS · Docker · LiteLLM
+
+## Prompt for Agent Teams
+Create an Agent Team to complete the project as defined. Team-members: a Front-end engineer to work on the frontend, a Backend API Engineer on the backend, a Database Engineer on all DB related code, an LLM Engineer on the LLM calls. While all team-members should work on unit tests, there should be an Integration Tester team-member that builds and runs end-to-end Playwright tests when ready, reporting issues back to be fixed by the team-members. Finally, a Devops engineer for the Docker container and the scripts.
+
