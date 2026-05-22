@@ -216,3 +216,10 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Playwright MCP browser snapshots (tool artefacts, not project code)
+.playwright-mcp/
+
+# Runtime / test databases
+db/finally.db
+test/*.db
